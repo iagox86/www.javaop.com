@@ -1,0 +1,3 @@
+User-agent: TurnitinBot
+Disallow: /
+

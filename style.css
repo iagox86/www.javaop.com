@@ -1,0 +1,46 @@
+	body 
+	{
+		background-color: #FFFFFF;
+	}
+  
+	.sectionheader
+	{
+		color: #000000;
+		font-weight: bold;
+	}
+  
+	.sectionbody
+	{
+		color: #000000;
+		margin-left: 30px;
+		display: run-in;
+	}
+	
+	.copyright
+	{
+		font-size: 8pt;
+	}
+
+	.validhtml
+	{
+	}
+
+	.logo
+	{
+		margin-left: 30px;
+		color: #0000C0;
+		font-size: 10pt;
+		font-weight: bold;
+	}
+	
+	.q
+	{
+		font-weight: bold;
+	}
+	.a
+	{
+		font-style: italic;
+		margin-left: 20px;
+	}
+
+	

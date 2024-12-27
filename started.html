@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>JavaOp Homepage</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<pre class="logo">
+
+      _                   ___			
+     | | __ ___   ____ _ / _ \ _ __     
+  _  | |/ _` \ \ / / _` | | | | '_ \	
+ | |_| | (_| |\ V / (_| | |_| | |_) |	
+  \___/ \__,_| \_/ \__,_|\___/| .__/	
+                              |_|		
+
+</pre>
+
+<hr>
+
+<ul>
+<li> <a href="index.html">Home</a><br>
+<li> <a href="introduction.html">Introduction</a></li>
+<li> <a href="started.html">Getting Started</a></li>
+<li> <a href="moderation.html">Channel Moderation</a></li>
+<li> <a href="plugins.html">Writing Plugins</a></li>
+<li> <a href="faq.html">Frequently Asked Questions</a></li>
+<li> <a href="contributers.html">Contributers</a></li>
+</ul>
+<ul>
+<li><a href="download.html">Download</a><br></li>
+<li><a href="http://www.x86labs.org/forum/index.php?board=13.0">Forum</a><br></li>
+</ul>
+
+
+<hr>
+
+
+<p class="sectionheader"> Download </p>
+
+<p class="sectionbody">
+The first thing you need to do is <a href="download.html">download</a> the latest core and plugins.  
+They can be unzipped to seperate folders, and it doesn't matter where they are.  Once they're unzipped, 
+you should have a bunch of .jar files.  
+</p>
+
+
+
+<p class="sectionheader"> Running .jar Files </p>
+
+<p class="sectionbody">
+If Java is installed properly, you should be able to double-click the core .jar files to bring up the 
+configuration and plugin management.  If you find that .jar files are associated with WinRar, open up
+WinRar and go into the configuration.  Find the "associations" page and unclick ".jar".  If you still
+can't double-click .jar files, you probably need to install Java.  For more information, see 
+<a href="http://java.sun.com/j2se/1.5.0/download.jsp">Sun's Download Page</a>, and get the 
+"J2SE 1.5.0 JRE".  Once that's installed, you should be able to double-click the .jar files to run them.
+If you wish to run the .jar files off a commandline, on any platform, use the command 
+"java -jar Jarfile.jar".  
+</p>
+
+
+<p class="sectionheader">Starting the bot</p>
+
+<p class="sectionbody">
+<i>Note: this tutorial was written for JavaOp2 beta 26.  It should still apply to newer versions.  It does
+NOT apply to older versions.</i>
+</p>
+
+<p class="sectionbody">
+Double click JavaOp2.jar to run it.  You will likely be prompted to find the plugins:<br>
+<img src="images/started1.jpg" alt="started1.jpg"><br>
+</p>
+
+<p class="sectionbody">
+Press "Ok", and find the folder where you extracted the plugins to:<br>
+<img src="images/started2.jpg" alt="started2.jpg"><br>
+</p>
+
+<p class="sectionbody">
+You'll then be presented with a blank bot:<br>
+<img src="images/started3.jpg" alt="started3.jpg"><br>
+</p>
+
+<p class="sectionbody">
+Under the "File" menu, choose "New bot..."  (or press control-n):
+<img src="images/started4.jpg" alt="started4.jpg"><br>  
+</p>
+
+<p class="sectionbody">
+You'll be prompted for a name.  Give it one:<br>
+<img src="images/started5.jpg" alt="started5.jpg"><br>
+</p>
+
+<p class="sectionbody">
+The bot should load up and give you a Warning:
+<img src="images/started6.jpg" alt="started6.jpg"><br>
+</p>
+
+<p class="sectionbody">
+Next, you have to fill in your account information.  
+Under the "settings" menu, choose "configure" (or press control-f).  When the settings come up, in the
+left column, click on "Battle.net Login Plugin."  Fill in your username, password, and cdkey, and choose which
+game client you want to use to connect:<br>
+<img src="images/started7.jpg" alt="started7.jpg"><br>
+</p>
+
+<p class="sectionbody">
+You can change other settings or add plugins if you'd like.  Generally, the default settings aren't too bad.
+When you're done all that, close the settings and make sure you save.  Then, under the "Connection" menu,
+click "Connect":
+<img src="images/started8.jpg" alt="started8.jpg"><br>
+</p>
+
+
+
+<p class="sectionheader">The Files</p>
+
+<p class="sectionbody">
+In this section, I'm going to explain the various files, their format, and what they are used for.  If
+you are working through a shell with no graphical interface, you will need to edit these by hand.  Or 
+if you just don't like gui utilities.  When you see a file like <i>&lt;botname&gt;</i>.jbb, replace 
+<i>&lt;botname&gt;</i> with the name of the bot, such as mybot.jbb.  All files are located in your home 
+folder, in a directory called ".javaop2".  On Linux, this would be "/home/<i>&lt;username</i>&gt;/.javaop2/", and on 
+Windows it would be "C:\Documents and Settings<i>\&lt;username&gt;</i>\.javaop2\".  The reason for this is that it 
+lets you move the bot, or reinstall the bot, or let seperate users use the bot without having to share 
+your data files.
+</p>
+<ul>
+	<li><b>_PluginPaths.txt</b> -- The path or list of paths that is searched for plugins (.jar files).  This
+		contains one plugin/line, and it can be a file, a folder, or a url.  Modified by 
+		SelectPlugins.jar.</li>
+</ul>
+<ul>
+	<li><b>_DefaultBots.txt</b> -- The list of bots that will be loaded by default (if none are specified on 
+		the commandline).  There is one bot/line.  This is modified by SetupBots.jar.</li>
+</ul>
+<ul>
+	<li><b>_GlobalSettings.txt</b> -- The global plugins that affect all bots.  Currently, I don't use it for
+		anything, but it's still generated.</li>
+</ul>
+<ul>
+	<li><b><i>&lt;botname&gt;</i>.jbb</b> -- This is the settings file for the bot.  It is divided into sections based
+		on the plugins.  Each plugin's section is name=value pairs.  This should be automatically 
+		generated the first time you run the bot, with default values.  It can be edited with SetupBots.jar.</li>
+</ul>
+<ul>
+	<li><b><i>&lt;botname&gt;</i>.jdb</b> -- This is the user database file.  It is a series of username=FLAGS pairs, 
+		where flags has to be in uppercase.  The names aren't case sensitive, and can include wildcards.</li>
+</ul>
+<ul>
+	<li><b><i>&lt;botname&gt;</i>.plugin</b> -- This is the list of plugins that are loaded by the bot when it starts.
+		This is modified by SetupBots.jar.  One plugin/line.</li>
+</ul>
+
+<hr>
+
+<p class="copyright">
+All information on this page is public domain.  If for any reason you want to copy/use this, feel free
+and have fun.  All software and source directly distributed by me is public domain, and may be used 
+in any way.  Any copyrights I use (Particularely Starcraft, Brood War, Diablo, Warcraft, and Blizzard) are
+copyrights of their respective owners (in this case, Blizzard).  Please respect all copyrights, and 
+enjoy any public domain source code and software.
+</p>
+
+<p class="validhtml">
+<a href="http://validator.w3.org/check?uri=referer"><img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer"><img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" height="31" width="88"></a>
+</p>
+
+</body>
+</html>

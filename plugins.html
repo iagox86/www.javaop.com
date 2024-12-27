@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>JavaOp Homepage</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<pre class="logo">
+
+      _                   ___			
+     | | __ ___   ____ _ / _ \ _ __     
+  _  | |/ _` \ \ / / _` | | | | '_ \	
+ | |_| | (_| |\ V / (_| | |_| | |_) |	
+  \___/ \__,_| \_/ \__,_|\___/| .__/	
+                              |_|		
+
+</pre>
+
+<hr>
+
+<ul>
+<li> <a href="index.html">Home</a><br>
+<li> <a href="introduction.html">Introduction</a></li>
+<li> <a href="started.html">Getting Started</a></li>
+<li> <a href="moderation.html">Channel Moderation</a></li>
+<li> <a href="plugins.html">Writing Plugins</a></li>
+<li> <a href="faq.html">Frequently Asked Questions</a></li>
+<li> <a href="contributers.html">Contributers</a></li>
+</ul>
+<ul>
+<li><a href="download.html">Download</a><br></li>
+<li><a href="http://www.x86labs.org/forum/index.php?board=13.0">Forum</a><br></li>
+</ul>
+
+
+<hr>
+
+
+
+
+<p class="sectionheader">Introduction</p>
+<p class="sectionbody">JavaOp2 is completely plugin oriented.  Just about anything imaginable can be done with a plugin.  Just about everything you see and use while using JavaOp2 is done by a plugin.  Plugins are allowed to see, filter, and respond to packets, events, commands, errors, and more.</p>
+
+<p class="sectionheader">What software do I need?</p>
+<p class="sectionbody">The main software you need is the Java SDK.  SDK means Software Development Kit.  You need to have Java's SDK to do any kind of Java development.  It can be downloaded from <a href="http://java.sun.com">java.sun.com</a>. I would recommend getting the 1.4.2 J2SE version, because that's what I use.</p>
+<p class="sectionbody">I strongly recommend you get the Eclipse editor.  All the examples I'm giving will require Eclipse.  It can be downloaded from <a href="http://www.eclipse.org">Eclipse.org</a>
+
+<p class="sectionheader"i>How to get a copy of JavaOp2 source</p>
+<p class="sectionbody">You can get JavaOp2's source various ways:</p>
+<ul>
+	<li>The best way to do this is to import it from my CVS through eclipse.  To do that:</li>
+	<ul>
+		<li>Under the "File" menu, select "Import..."</li>
+		<li>Choose "Checkout projects from CVS", and hit "next"</li>
+		<li>When prompted for CVS server info, fill in the following:</li>
+		<ul>
+			<li>Host: www.javaop.com</li>
+			<li>Repository Path: /src/master</li>
+			<li>User: anonymous</li>
+			<li>Password: [blank]</li>
+			<li>Connection Type: pserver</li>
+			<li>Port: default (2401)</li>
+			<li>Save Password: [checked]</li>
+		</ul>
+		<li>Choose the "use an existing module" radiobutton</li>
+		<li>You'll get a large list of projects.  The important ones are:</li>
+		<ul>
+			<li>javaop2_pub -- The functions and definitions you'll need to create your own plugin</li>
+			<li>javaop2 -- The base code for the JavaOp project.  If you'd like to have a look at it, feel free</li>
+			<li>web -- This website</li>
+			<li>PluginTestHarness -- A class for testing plugins.  More on it later.</li>
+			<li>Version -- A very simple plugin, written by Warrior</li>
+			<li>Ping -- Another simple plugin, written by me (iago)</li>
+			<li>BNetLogin -- The plugin for logging in.  Could be interesting to look at.</li>
+			<li>AntiFlood, Autoban, ChannelList, ConsoleDisplay, Help, Moderation, SimpleEventProcess, SwingGui, and UserManagement -- Other plugins I've written, can be good examples.</li>
+		</ul>
+		<li>You can import more than one one if you hold control.  All you <i>need</i> is javaop2_pub.</li>
+	</ul>
+</ul>
+
+<ul>		
+    <li>You can also connect to the CVS server manually, if you'd like to.  The commands are:</li>
+    <ul>
+    	<li>$ cvs -d :pserver:anonymous@www.javaop.com:/src/master login
+		<li>(enter for blank password)</li>
+		<li>$ cvs -d :pserver:anonymous@www.javaop.com:/src/master checkout &lt;project&gt;</li>
+		<li>You can get a list of the projects in the section above.</li>
+	</ul>
+</ul>
+
+<ul>
+	<li>You can browse the source files <a href="javaop2/src">here</a>, it will always have the
+		most up-to-date version.  But that's the hard way to do it.</li>
+</ul>
+
+<ul>
+	<li>Finally, you can download the files from the <a href="download.html">download page</a>.  
+		The files, once extracted, will be .jar's.  A .jar file is just a variation 
+		of a .zip, and can be opened by and program that supports zip files (winrar, winzip, 
+		etc).  Inside you should find the .java files.  You'll want to extract javaop2_pub from 
+		javaop2.jar.</li>
+</ul>
+
+<p class="sectionheader">Creating a project</p>
+<ol>
+    <li>Create a new project.</li>
+    <ul>
+    	<li>Under the file menu, select "New->Project..."</li>
+    	<li>Pick "Java Project" and hit "Next"</li>
+    	<li>Give it a name</li>
+    	<li>I like to check off "Create seperate source and output folders", but that's up to you</li>
+    </ul>
+    
+    <li>Make the project depend on javaop2_pub
+    <ul>
+    	<li>Right click on the project, and select "Properties"</li>
+    	<li>Choose the "Java Build Path" option on the left</li>
+    	<li>Choose the "Projects" tab</li>
+    	<li>Check off "javaop2_pub", and hit "OK"</li>
+    </ul>
+    
+    <li>Create a new class called PluginMain, which extends GenericPluginInterface, and implements other interfaces that you want your plugin to be able to handle.  See below for a list of the interfaces and what they do</li>
+    <ul>
+		<li>Right click on the project, pick "New->Class..."</li>
+		<li>Name the class "PluginMain</li>
+		<li>There should be a box for "Superclass", and on the right a "Browse..." button.  Hit Browse, and set it to GenericPluginInterface.
+		<li>There should be a box for "Interfaces", and on the right an "Add..." button.  Hit add, and add any interfaces you need.  See the next section for more information</li>
+		<li>Hit "Finish"</li>
+	</ul>
+	
+    <li>Fill in PluginMain with the appropriate information.</li>
+    <ul>
+    	<li>See my examples for more details.</li>
+    </ul>
+    
+    <li>When you're ready to test it, you need to generate a .jar file.  This is a little tricky in Eclipse, so I'll post some screenshots.</li>
+    <ul>
+    	<li>Right click on your project in the "Project Explorer", and click on "export..."
+        <li>Choose "To .jar file" [<a href="jar1.png">screenshot</a>]
+        <li>Check off just your plugin, and give it a name.  The name you give is relative to your "workspace" folder, so if you don't specify a path it'll go to there, which isn't so bad.  I personally like to put it inside a folder called "Plugins", as you can see in the screenshot.  Then hit "next". [<a href="jar2.png">screenshot</a>]</li>
+		<li>You'll want to save a description of the JAR, so check that off.  The path is relative work your "workspace" folder again, and I strongly recommend putting the .jardesc file in your project's folder. [<a href="jar3.png">screenshot</a>]</li>
+		<li>Finally, you'll want to save the manifest file.  As usual, the path is relative to "workspace".  I always put the Manifest file in my project's folder, and call it manifest.mf.  [<a href="jar4.png">screenshot</a>]</li>
+        <li>That should generate the .jar file.  Don't worry if there are warnings, warnings are common and generally harmless.  You can now load it up in your bot and play with it!</li>
+        <li>In the future, you can right-click on the .jardesc file and select "Create .jar" to quickly re-generate a jar file.  Remember, whenever you make any changes to your plugin, you need to re-generate the .jar file before the changing will take effect.</li>
+    </ul>
+</ol>
+
+
+<p class="sectionheader">The interfaces</p>
+<p class="sectionbody">When a plugin is written, the PluginMain class has to implement 
+<a href="javaop2/src/javaop2_pub/src/plugin_interfaces/GenericPluginInterface.java">GenericPluginInterface</a>,
+which identifies it as a plugin and lets JavaOp2's Core glean 
+important information about it (author, version, etc.).  However, if you want to be able to 
+do anything useful, you have to implement other interfaces, which are listed below.  Note 
+that implementing one of these interfaces isn't sufficient to get notifications when the 
+event occurs -- you also have to register the plugin.  See the next section for that.</p>
+<p class="sectionbody">When you set up your bot, you tell Eclipse which of these interfaces
+you want to use.  Each one is basically a series of functions that your plugin is forced
+to implement.  These functions will be added automatically, ready for you to fill out.  Remember,
+though, that in functions that require a return value, returning "null" or "false" will generally
+cancel the packet/event/whatever, and it won't go through, so make sure to actually implement
+them.</p>
+<ul>
+
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/BotCallback.java">BotCallback</a></li>
+    <ul>
+    	<li>Your plugin can receive notifications for general bot-related activities, such as starting and stopping.  The plugin is also capable of stopping a bot from shutting down if it wants to.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/CommandCallback.java">CommandCallback</a></li>
+    <ul>
+    	<li>Your plugin can receive notifications when a user in the channel whispers or sends a command.  When you register your plugin, you're required to specify the command(s) that it recognizes, along with who is allowed to use them (the flags required) and the help for the command.  I'll explain more about this in the next section.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/ConnectionCallback.java">ConnectionCallback</a></li>
+    <ul>
+    	<li>Your plugin will receive notifications about connecting and disconnecting.  It can also cancel a connection or a planned disconnection.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/ErrorCallback.java">ErrorCallback</a></li>
+    <ul>
+    	<li>Your plugin can be notified when an error occurs.  Either a plugin throws an exception, or something.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/EventCallback.java">EventCallback</a></li>
+    <ul>
+	    <li>Your plugin can receive events.  There are quite a number of them, such as a user joining, user leaving, somebody talking, etc.</li>
+	</ul>
+	
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/OutgoingTextCallback.java">OutgoingTextCallback</a></li>
+    <ul>
+    	<li>Your plugin can register itself to see text that is being sent.  This can be used for adding delays to outgoing messages (so you don't flood), for displaying outgoing messages, or for detecting outgoing commands.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/PacketCallback.java">PacketCallback</a></li>
+    <ul>
+    	<li>Your plugin can register itself to be notified when certain packets are sent or received.  The plugin can also change or cancel packets before they're processed by other plugins or, if it's an outgoing packet, before it's sent.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/BotCallback.java">RawEventCallback</a></li>
+    <ul>
+    	<li>Your plugin can receive the raw events from Battle.net.  This is a username/message/code/ping/flags.  The most useful feature of this is being able to change or cancel events.  Floodbot filters and encryption can be done by this type of plugin.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/SystemMessageCallback.java">SystemMessageCallback</a></li>
+    <ul>
+    	<li>Your plugin can see system messages that are sent by other plugins.  This is useful for displaying or logging.  One note that should be obvious: do NOT call out.systemMessage() from this!</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/UserDatabaseCallback.java">UserDatabaseCallback</a></li>
+    <ul>
+    	<li>Your plugin can receive notifications when the user database is changed.</li>
+    </ul>
+    
+    <li><a href="javaop2/src/javaop2_pub/src/plugin_interfaces/UserErrorCallback.java">UserErrorCallback</a></li>
+    <ul>
+    	<li>Your plugin can receive notifications when a user makes a mistake.  For example, using a command improperly, using a command that they aren't allowed to use, or using a command that doesn't exist.</li>
+    </ul>
+</ul>
+    
+        
+
+<p class="sectionheader">Registering Plugins</p>
+<p class="sectionbody">In the plugin's activate() function, you're passed a variable called
+"PluginCallbackRegister register".  This is what your plugin uses to register itself to receive
+notifications.  You generally call register.registerXXXX(this, ...., null);.  The actual 
+parameters depend on which plugin.  The last value is called "data", and is passed to your 
+plugin whenever your plugin is called.  It's not terribly useful, so I generally set it to
+null.</p>
+<p class="sectionbody">You can get a current list of registration functions from 
+<a href="javaop2/src/javaop2_pub/src/callback_interfaces/PluginCallbackRegister.java">here</a>.
+The comments provided above each function should suffice for documentation.</p>
+
+<p class="sectionheader">Public functions</p>
+<p class="sectionbody">When a plugin is activated, it's given an instance of 
+<a href="javaop2/src/javaop2_pub/src/callback_interfaces/PublicExposedFunctions.java">PublicExposedFunctions</a>
+	called "out".  The plugin can use "out" to communicate with other parts of the bot or 
+	with battle.net.  "out" has a very large number of functions, but they're all commented 
+	and it should be clear what they do.</p>
+
+<p class="sectionheader">Examples</p>
+<p class="sectionbody">I haven't written any step-by-step examples, but I'll put links to a couple
+	of my plugins here for now.</p>
+<ul>
+	<li><a href="javaop2/src/Ping/src/PluginMain.java">Ping</a> -- Responds to Battle.net's pings</li>
+	<li><a href="javaop2/src/Autoban/src/PluginMain.java">AutoBan</a> -- Bans users with B or Z when they enter the channel, are in the channel, or have their flags updated.</li>
+	<li><a href="javaop2/src/Help/src/PluginMain.java">Help</a> -- Provides the .help and .usage commands, and advises a user on proper usage of a command when they use it improperly.</li>
+	<li><a href="javaop2/src/Version/src/PluginMain.java">Version</a> -- Provides the .version command which displays the (usually wrong, since I forget to update) current version.  Very simple and clean, written by Warrior[x86].</li>
+	<li><a href="javaop2/src/ConsoleDisplay/src/PluginMain.java">ConsoleDisplay</a> -- Displays text in console.  This won't compile alone -- pull from CVS to get all necessary files.</li>
+</ul>
+	
+<p class="sectionheader">Advice/Comments</p>
+<p class="sectionbody">This is a faq-ish style section where I put any tidbits or random 
+	thoughts, as I think of them.  As such, it'll probably grow on a regular basis, so check
+	back often.</p>
+<ul>
+	<li>For command plugins, leave the flag checking up to the core where possible.</li>
+    <li>Don't use RawEventCallback unless you have to.  It's much better to use the event after it's been processed, since sometimes the processing will delay or remove the event.  You should wait till after all that to actually process it, unless you actually need the low level control.</li>
+    <li>For RawEvent and Packet plugins, only register the plugin for the packets that it needs.  Every plugin registered for a certain event or packet will slow it down a little.</li>
+    <li>Starting with one of my pre-made or example plugins rather than starting from scratch could probably be very helpful.</li>
+    <li>If you're interested in developing plugins, keep in touch with <TODO> me via email or my forum.  If you write anything that can be useful to others, I'll include it in my optional plugin collection.</li>
+    <li>Throwing a PluginException if something goes wrong is fine, it will be caught later up the bot and usually get displayed.</li>
+    <li>Throwing an IOException generally indicates that there is an error communicating with the Battle.net server.  If one of them is thrown, the connection is closed up and it will attempt to reconnect.  Don't throw an IOException on your own, unless you want to force an unplanned disconnect.</li>
+    <li>Provide good help for your command, compressed into a line or two.  This is generally all the documentation that a user will ever see.</li>
+</ul>
+
+
+
+
+
+
+
+<hr>
+
+<p class="copyright">
+All information on this page is public domain.  If for any reason you want to copy/use this, feel free
+and have fun.  All software and source directly distributed by me is public domain, and may be used 
+in any way.  Any copyrights I use (Particularely Starcraft, Brood War, Diablo, Warcraft, and Blizzard) are
+copyrights of their respective owners (in this case, Blizzard).  Please respect all copyrights, and 
+enjoy any public domain source code and software.
+</p>
+
+
+<p class="validhtml">
+<a href="http://validator.w3.org/check?uri=referer"><img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer"><img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" height="31" width="88"></a>
+</p>
+
+
+</body>
+</html>

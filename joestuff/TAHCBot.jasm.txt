@@ -1,0 +1,75 @@
+Compiled from "TAHCBot.java"
+public class TAHCBot extends java.lang.Object{
+static java.net.Socket sckBNET;
+
+static java.io.BufferedReader sckBNET_IS;
+
+static java.io.OutputStream sckBNET_OS;
+
+static java.lang.String sServer;
+
+static int iPort;
+
+static java.lang.String sUsername;
+
+static java.lang.String sPassword;
+
+public TAHCBot();
+  Code:
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+
+public static void main(java.lang.String[]);
+  Code:
+   0:	iconst_3
+   1:	ldc	#2; //String TAHCBot v4.0 by Joe[e2] loaded.
+   3:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+   6:	iconst_4
+   7:	ldc	#4; //String Connecting..
+   9:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+   12:	new	#5; //class java/net/Socket
+   15:	dup
+   16:	getstatic	#6; //Field sServer:Ljava/lang/String;
+   19:	getstatic	#7; //Field iPort:I
+   22:	invokespecial	#8; //Method java/net/Socket."<init>":(Ljava/lang/String;I)V
+   25:	putstatic	#9; //Field sckBNET:Ljava/net/Socket;
+   28:	goto	58
+   31:	astore_1
+   32:	iconst_4
+   33:	new	#11; //class java/lang/StringBuilder
+   36:	dup
+   37:	invokespecial	#12; //Method java/lang/StringBuilder."<init>":()V
+   40:	ldc	#13; //String Socket error: 
+   42:	invokevirtual	#14; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   45:	aload_1
+   46:	invokevirtual	#15; //Method java/io/IOException.toString:()Ljava/lang/String;
+   49:	invokevirtual	#14; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   52:	invokevirtual	#16; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+   55:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+   58:	iconst_4
+   59:	ldc	#17; //String Connected!
+   61:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+   64:	invokestatic	#18; //Method makeStreams:()V
+   67:	invokestatic	#19; //Method sendAuth:()V
+   70:	invokestatic	#20; //Method doRecvLoop:()V
+   73:	return
+  Exception table:
+   from   to  target type
+    12    28    31   Class java/io/IOException
+
+
+static {};
+  Code:
+   0:	ldc	#74; //String uswest.battle.net
+   2:	putstatic	#6; //Field sServer:Ljava/lang/String;
+   5:	sipush	6112
+   8:	putstatic	#7; //Field iPort:I
+   11:	ldc	#75; //String REMOVED
+   13:	putstatic	#41; //Field sUsername:Ljava/lang/String;
+   16:	ldc	#76; //String REMOVED
+   18:	putstatic	#43; //Field sPassword:Ljava/lang/String;
+   21:	return
+
+}
+

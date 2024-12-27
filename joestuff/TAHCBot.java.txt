@@ -1,0 +1,172 @@
+//Decompiled from "TAHCBot.class"
+
+
+/**
+ * This is the disassembled and rewritten main class for an old bot of mine.
+ * I seem to have misplaced all the other class files except for this one, so
+ * it won't do anything at all, not to mention it was written for a totally
+ * defunct protocol. So, the only practical thing left to do is post it on x86!
+ */
+public class TAHCBot extends java.lang.Object
+{
+    static java.net.Socket sckBNET;
+    static java.io.BufferedReader sckBNET_IS;
+    static java.io.OutputStream sckBNET_OS;
+    static java.lang.String sServer;
+    static int iPort;
+    static java.lang.String sUsername;
+    static java.lang.String sPassword;
+
+    public TAHCBot()
+    {
+       //0:	aload_0
+
+       /*
+        * Construct the superclass
+        */
+       //1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+       super();
+
+       //4:	return
+       return;
+    }
+
+    /**
+     *
+     *
+	 * Exception table:
+	 *  from   to  target type
+	 *	12    28    31   Class java/io/IOException
+     */
+    public static void main(java.lang.String[] args)
+    {
+
+       /*
+        * This isn't actually in the java assembly, but the JVM does it
+        * automaically.
+        */
+       do_static();
+
+       //0:	iconst_3
+
+       /*
+        * String constant "TAHCBot..."
+        * Print it
+        */
+       //1:	ldc	#2; //String TAHCBot v4.0 by Joe[e2] loaded.
+       //3:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+       System.out.println("TAHCBot v4.0 by Joe[e2] loaded.");
+
+       //6:	iconst_4
+
+       /*
+        * String constant "Connecting.."
+        * Print it
+        */
+       //7:	ldc	#4; //String Connecting..
+       //9:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+       System.ou.println("Connecting..");
+
+       try
+       {
+		   //12:	new	#5; //class java/net/Socket
+		   //15:	dup
+		   //16:	getstatic	#6; //Field sServer:Ljava/lang/String;
+		   //19:	getstatic	#7; //Field iPort:I
+		   //22:	invokespecial	#8; //Method java/net/Socket."<init>":(Ljava/lang/String;I)V
+           java.net.Socket sck = new java.net.Socket(sServer, iPort);
+		   //25:	putstatic	#9; //Field sckBNET:Ljava/net/Socket;
+           sckBNET = sck;
+           
+		   //28:	goto	58
+       }
+       catch(java.io.IOException ioe)
+       {
+		   //31:	astore_1
+		   //32:	iconst_4
+
+           /*
+            * Create new StringBuffer object
+            */
+		   //33:	new	#11; //class java/lang/StringBuilder
+           java.lang.StringBuilder sb;
+
+		   //36:	dup
+
+           /*
+            * Call init on the stringbuffer object, "construsting" it
+            */
+		   //37:	invokespecial	#12; //Method java/lang/StringBuilder."<init>":()V
+           sb = new java.lang.StringBuilder();
+
+           /*
+            * String constant "Socket error:", add it to StringBuffer
+            */
+		   //40:	ldc	#13; //String Socket error:
+		   //42:	invokevirtual	#14; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder; 
+           sb.append("Socket error:");
+
+		   //45:	aload_1
+
+           /*
+            * Get toString from the IOException
+            * Add it to the StringBuffer
+            */
+		   //46:	invokevirtual	#15; //Method java/io/IOException.toString:()Ljava/lang/String;
+		   //49:	invokevirtual	#14; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+		   sb.append(ioe.toString());
+
+           /*
+            * Get toString from the StringBuffer
+            * Dump it out
+            */
+           //52:	invokevirtual	#16; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+		   //55:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+           System.out.println(sb.toString());
+           
+       }
+       finally
+       {
+		   //58:	iconst_4
+
+           /*
+            * String constant, "Connected!"
+            * What should we do with this?!
+            */
+		   //59:	ldc	#17; //String Connected!
+		   //61:	invokestatic	#3; //Method out:(ILjava/lang/String;)V
+
+		   //64:	invokestatic	#18; //Method makeStreams:()V
+           // makeStreams();
+
+		   //67:	invokestatic	#19; //Method sendAuth:()V
+           // sendAuth();
+		   //70:	invokestatic	#20; //Method doRecvLoop:()V
+           // doRecvLoop();
+		   //73:	return
+       }
+    }
+
+    /**
+     * These are normally the "initial variables" from the very top,
+     * but you honestly can't expect me to do this the easy way. I hope you
+     * understand string constants now.
+     */
+    private static void do_static ()
+    {
+        //0:	ldc	#74; //String uswest.battle.net
+        //2:	putstatic	#6; //Field sServer:Ljava/lang/String;
+        sServer = "uswest.battle.net";
+        //5:	sipush	6112
+        //8:	putstatic	#7; //Field iPort:I
+        iPort = 6112;
+        //11:	ldc	#75; //String REMOVED
+        //13:	putstatic	#41; //Field sUsername:Ljava/lang/String;
+        sUsername = "";
+        //16:	ldc	#76; //String REMOVED
+        //18:	putstatic	#43; //Field sPassword:Ljava/lang/String;
+        sPassword = "";
+        //21:	return
+    }
+}
+

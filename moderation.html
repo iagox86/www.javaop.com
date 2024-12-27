@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>JavaOp Homepage</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<pre class="logo">
+
+      _                   ___			
+     | | __ ___   ____ _ / _ \ _ __     
+  _  | |/ _` \ \ / / _` | | | | '_ \	
+ | |_| | (_| |\ V / (_| | |_| | |_) |	
+  \___/ \__,_| \_/ \__,_|\___/| .__/	
+                              |_|		
+
+</pre>
+
+<hr>
+
+<ul>
+<li> <a href="index.html">Home</a><br>
+<li> <a href="introduction.html">Introduction</a></li>
+<li> <a href="started.html">Getting Started</a></li>
+<li> <a href="moderation.html">Channel Moderation</a></li>
+<li> <a href="plugins.html">Writing Plugins</a></li>
+<li> <a href="faq.html">Frequently Asked Questions</a></li>
+<li> <a href="contributers.html">Contributers</a></li>
+</ul>
+<ul>
+<li><a href="download.html">Download</a><br></li>
+<li><a href="http://www.x86labs.org/forum/index.php?board=13.0">Forum</a><br></li>
+</ul>
+
+
+<hr>
+
+Although the moderation is really up to plugins, I figured I'd outline the default moderation
+capibilities that come with the deafult plugin set.  
+
+<p class="sectionheader">Flags</p>
+<p class="sectionbody">
+The concept of flags is pretty simple.  Every user has zero or more flags, each of which are represented
+by a single alphabetic character.  Each flag represents something different.  Although the role of
+the flags are entirely up to the plugins, some conventions include:
+</p>
+<ul>
+	<li><b>A</b> -- user Administration</li>
+	<li><b>B</b> -- Autobanned</li>
+	<li><b>C</b> -- Connection related</li>
+	<li><b>D</b> -- Designate</li>
+	<li><b>E</b> -- auto dEsignate</li>
+	<li><b>F</b> -- Friend</li>
+	<li><b>L</b> -- Low level commands</li>
+	<li><b>M</b> -- Master</li>
+	<li><b>N</b> -- uNrestricted access</li>
+	<li><b>O</b> -- channel Ops</li>
+	<li><b>P</b> -- Permenant</li>
+	<li><b>Q</b> -- Quit</li>
+	<li><b>S</b> -- Safe</li>
+	<li><b>T</b> -- Talk</li>
+	<li><b>U</b> -- Universal (or User-level)</li>
+	<li><b>Z</b> -- Zapped</li>
+</ul>
+<p class="sectionbody">
+Some flags give the user access to bot commands (A gives .setuser, O gives .ban, etc.), some flags
+mark the user as somebody special (S is safelisted, and B is autobanned), and some flags have a 
+special effect (E users are automatically generated when the user enters the channel).  What a flag does
+is really up to the plugins that use it.  
+</p>
+
+
+<p class="sectionheader">Friends/Autoban/Safe/Zapped</p>
+<p class="sectionbody">
+There are four flags that control, to some extent, the user's presence in the channel.  Ordered from
+the least powerful to the most powerful:
+</p>
+<ul>
+	<li><b>Friend</b> -- This indicates that the user is a welcomed guest in the channel.  They won't be
+	affected by certain automatic bans.</li>
+	<li><b>Autoban</b> -- If a user has the B flag, they will be banned as soon as they enter the channel
+	provided they don't have the S flag.</li>
+	<li><b>Safe</b> -- This is for users who are in the clan or are friends with the bot creator.  Most
+	commands won't work on them, they can only be banned by a leader with the .banz command.  The only
+	negative flag that affects them is...</li>
+	<li><b>Zapped</b> -- A user with Z will be banned when they enter the channel, no matter what other
+	flags they have.</li>
+</ul>
+
+
+
+<p class="sectionheader">Ban/Kick Commands</p>
+<p class="sectionbody">
+There are 3 levels of ban/kick commands.  It can be customized who can use which, but by default
+to use the "z" level, you require N or M flags, and to use the normal or "f" level, you need O or
+N.  Here are the default moderation commands:
+</p>
+<ul>
+	<li><b>banf/kickf</b> -- Bans or kicks all users specified that don't have F or S flag.</li>
+	<li><b>ban/kick</b> -- Bans or kicks all users specified that don't have S.</li>
+	<li><b>banz/kickz</b> -- Bans or kicks all users.</li>
+</ul>
+
+
+
+<hr>
+
+<p class="copyright">
+All information on this page is public domain.  If for any reason you want to copy/use this, feel free
+and have fun.  All software and source directly distributed by me is public domain, and may be used 
+in any way.  Any copyrights I use (Particularely Starcraft, Brood War, Diablo, Warcraft, and Blizzard) are
+copyrights of their respective owners (in this case, Blizzard).  Please respect all copyrights, and 
+enjoy any public domain source code and software.
+</p>
+
+<p class="validhtml">
+<a href="http://validator.w3.org/check?uri=referer"><img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer"><img border="0" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" height="31" width="88"></a>
+</p>
+
+
+</body>
+</html>
